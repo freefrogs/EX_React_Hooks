@@ -24,10 +24,20 @@ function App() {
     },
   ])
   //setTasks([...tasks, {}]) -> aktualizacja state
+
+  //delete task
+  const deleteTask = (id) => {
+    setTasks(tasks.filter(t => t.id !== id))
+  }
+
   return (
     <div className="container">
       <Header />
-      <Tasks tasks={tasks}/>
+      {tasks.length > 0 ? (
+        <Tasks tasks={tasks} onDelete={deleteTask} />
+      ) : (
+        'No task to show'
+      )}
     </div>
   );
 }
